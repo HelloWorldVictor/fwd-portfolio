@@ -23,16 +23,18 @@ body {
   font-optical-sizing: auto;
   color: var(--dark);
 }
-header {
+.navbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 20;
   transition: transform 400ms;
-  background-color: #fff;
 }
 
+.navbar > div {
+  background-color: #fff;
+}
 .navbar nav {
   display: flex;
   justify-content: space-between;
@@ -105,6 +107,10 @@ header {
   border-radius: 2.5rem;
   transition: background-color 0.2s ease;
   cursor: pointer;
+
+  @media (min-width: 48rem) {
+    display: none;
+  }
 }
 
 .mobile-nav-btn:hover {
