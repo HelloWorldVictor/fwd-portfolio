@@ -24,7 +24,7 @@
     />
     <link
       rel="stylesheet"
-      href="https://api.iconify.design/ri.css?icons=github-fill,linkedin-box-fill,briefcase-2-line,graduation-cap-line"
+      href="https://api.iconify.design/ri.css?icons=github-fill,linkedin-box-fill,briefcase-2-line,graduation-cap-line,menu-line"
     />
   </head>
   <body>
@@ -47,12 +47,35 @@
             </a>
           </li>
         </ul>
-        <!-- <div class="menu-toggle" id="mobile-menu">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </div> -->
+        <button class="mobile-nav-btn">
+          <div class="mobile-nav-bg"></div>
+          <span class="icon--ri icon--ri--menu-line"></span>
+        </button>
       </nav>
+      <section
+        id="mobile-nav-content"
+        role="tabpanel"
+        tabindex="0"
+        class="mobile-nav relative md:hidden"
+        data-open="false"
+      >
+        <div>
+          <ul class="mobile-nav-links">
+            <li><a class="nav-link" href="#about">About</a></li>
+            <li><a class="nav-link" href="#projects">Projects</a></li>
+            <li><a class="nav-link" href="#skills">Skills</a></li>
+            <li><a class="nav-link" href="#contact">Contact</a></li>
+            <li class="social-links">
+              <a href="#" class="social-link" aria-label="Github">
+                <span class="icon--ri icon--ri--github-fill"></span>
+              </a>
+              <a href="#" class="social-link" aria-label="LinkedIn">
+                <span class="icon--ri icon--ri--linkedin-box-fill"></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
     </header>
     <!-- Hero -->
     <section class="hero container">

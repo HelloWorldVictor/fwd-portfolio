@@ -1,11 +1,32 @@
-// script.js
-
+const email = "v.hamzat@alustudent.com";
+const subject = "Contact Form Submission";
+const body = "Name: {name}\nEmail: {email}\nMessage: {message}";
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("contactForm");
+  const button = document.querySelector(".mobile-nav-btn");
+  const mobileNav = document.querySelector(".mobile-nav");
 
+  if (!form || !button || !mobileNav) {
+    console.error("Contact form not found!");
+    return;
+  }
+
+  button.addEventListener("click", () => {
+    const expanded = button.getAttribute("aria-expanded") === "true";
+    button.setAttribute("aria-expanded", `${!expanded}`);
+    expanded
+      ? button.setAttribute("aria-label", "Open menu")
+      : button.setAttribute("aria-label", "Close menu");
+    mobileNav.setAttribute("data-open", `${!expanded}`);
+  });
+  Array.from(mobileNav.querySelectorAll("a")).map((link) => {
+    link.addEventListener("click", () => {
+      button.setAttribute("aria-expanded", "false");
+      mobileNav.setAttribute("data-open", "false");
+    });
+  });
   form.addEventListener("submit", async (e) => {
     e.preventDefault(); // stop normal form-post
-
     // gather form data
     const formData = {
       name: form.name.value.trim(),
@@ -19,27 +40,16 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Example: log it (replace with your fetch/ajax call)
-    console.log("Submitting contact form:", formData);
+    const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(
+      body
+        .replace("{name}", formData.name)
+        .replace("{email}", formData.email)
+        .replace("{message}", formData.message)
+    )}`;
+    window.location.href = mailtoLink;
 
-    /*  
-      // If you have an endpoint to POST to:
-      try {
-        const response = await fetch('/api/contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formData)
-        });
-        if (response.ok) {
-          alert('Thanks! Your message has been sent.');
-          form.reset();
-        } else {
-          throw new Error('Network response was not ok');
-        }
-      } catch (err) {
-        console.error(err);
-        alert('There was a problem sending your message.');
-      }
-      */
+    console.log("Submitting contact form:", formData);
   });
 });
